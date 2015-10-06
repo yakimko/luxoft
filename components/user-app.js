@@ -5,7 +5,7 @@ define([
     '../models/user',
     'can/route',
     'can/list/sort'
-], function (can, Component, User, route, sortPlugin) {
+], function (can, Component, User, route) {
     'use strict';
 
     var users = [
