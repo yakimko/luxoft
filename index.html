@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" data-framework="canjs">
+	<head>
+		<meta charset="utf-8" />
+		<title>Luxoft test task</title>
+		<link rel="stylesheet" href="css/app.css" />
+	</head>
+	<body>
+		<section id="userapp"></section>
+		<section id="usercreate"></section>
+		<script type="text/mustache" id="app-template">
+			<user-app>
+				<header id="header">
+					<input id="filter-users" autofocus can-keyup="filterUsers" can-value="filter"
+						   placeholder="Name, SSN or TIN, Rep Code, Office, Street, City, State, Phone Number, Account Number">
+				</header>
+				<section id="main">
+					<table id="users-list">
+						<thead>
+							<tr>
+							    <th colspan="3" can-click="sortUsers" class="text-left">
+									Client <span class="sorting">{{#if sort}} &#x25bc; {{else}} &#x25b2; {{/if}}<span>
+								</th>
+							    <th>Accounts</th>
+							    <th class="notes">Notes</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each displayList}}
+							<tr>
+								<td class="photo"><img src="images/{{status}}.png" alt="" /></td>
+								<td class="fullname">
+									<strong>{{fullName}}</strong>
+									<div>{{someUnknownData}}</div>
+								</td>
+								<td>
+									{{#if phoneNumberBusiness}}
+										{{phoneNumberBusiness}}
+									{{else}}
+										{{phoneNumberHome}}
+									{{/if}}
+									<div>
+										{{#if email}}
+											<a href="mailto:{{email}}">{{email}}</a>
+										{{/if}}
+									</div>
+								</td>
+								<td class="small">
+									{{#hasManyAccounts}}{{/hasManyAccounts}}
+									{{#if accounts}}
+										<a href="#">{{accounts.0.number}}</a> {{accounts.0.description}}
+									{{/if}}
+								</td>
+								<td class="notes">
+									{{#if notes}}
+										{{notes.0.text}}
+										<div class="small">{{notes.0.time}}, {{#hasManyNotes}}{{/hasManyNotes}}</div>
+									{{/if}}
+								</td>
+							</tr>
+							{{/each}}}
+						</tbody>
+					</table>
+					<button type="button" id="new-client">Add new client</button>
+				</section>
+			</user-app>
+		</script>
+		<script type="text/mustache" id="create-template">
+			<form onsubmit="return false;" style="width: 400px;" autocomplete="off">
+				<p><span class="label">Name</span> <input type="text" name="name" /></p>
+				<p><span class="label">Last name</span> <input type="text" name="lastName" /></p>
+				<p><span class="label">Address</span> <input type="text" name="address" /></p>
+				<p><span class="label">Business phone number</span> <input type="text" name="phoneNumberBusiness" /></p>
+				<p><span class="label">Home phone number</span> <input type="text" name="phoneNumberHome" /></p>
+				<p><span class="label">Email </span> <input type="text" name="email" /></p>
+				<input type="hidden" name="status" value="3" />
+				<div class="text-center">
+					<button type="button" class="save">Save</button>
+					<button type="button" class="cancel">Cancel</button>
+				</div>
+			</form>
+		</script>
+		<script data-main="js/app" src="node_modules/requirejs/require.js"></script>
+	</body>
+</html>
