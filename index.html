@@ -11,7 +11,7 @@
 		<script type="text/mustache" id="app-template">
 			<user-app>
 				<header id="header">
-					<input id="filter-users" autofocus can-keyup="filterUsers" can-value="filter"
+					<input id="filter-users" can-input="filterUsers"
 						   placeholder="Name, SSN or TIN, Rep Code, Office, Street, City, State, Phone Number, Account Number">
 				</header>
 				<section id="main">
@@ -66,8 +66,8 @@
 			</user-app>
 		</script>
 		<script type="text/mustache" id="create-template">
-			<form onsubmit="return false;" style="width: 400px;" autocomplete="off">
-				<p><span class="label">Name</span> <input type="text" name="name" /></p>
+			<form onsubmit="return false;" style="width: 400px;">
+				<p><span class="label">Name</span> <input type="text" name="name" autofocus /></p>
 				<p><span class="label">Last name</span> <input type="text" name="lastName" /></p>
 				<p><span class="label">Address</span> <input type="text" name="address" /></p>
 				<p><span class="label">Business phone number</span> <input type="text" name="phoneNumberBusiness" /></p>

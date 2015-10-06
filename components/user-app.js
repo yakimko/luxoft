@@ -96,7 +96,13 @@ define([
                 return users;
             }),
             filterUsers: function (e, $el) {
-                route.attr('filter', $el.val().trim());
+                var val = $el.val().trim();
+
+                if (val) {
+                    route.attr('filter', val);
+                } else {
+                    route.removeAttr('filter');
+                }
             },
             sortUsers: function () {
                 this.attr('sort', !this.attr('sort'));
@@ -105,9 +111,6 @@ define([
         events: {
             '{User} created': function (Construct, ev, user) {
                 this.scope.attr('users').push(user);
-            },
-            '{can.route} filter': function (route, ev, filter) {
-                this.scope.attr('filter', filter);
             }
         },
         helpers: {
